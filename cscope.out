@@ -1,0 +1,4767 @@
+cscope 15 $HOME/Documents/work/sherlock/bookInfo -c               0000027016
+	@src/main/java/com/harbor/samples/bookInfo/BookInfoApplication.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+;
+
+3 
+import
+ 
+	gorg
+.
+	gmodelmapper
+.
+	gModelMapper
+;
+
+4 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gboot
+.
+	gSpringApplication
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gboot
+.
+	gautoconfigure
+.
+	gSpringBootApplication
+;
+
+6 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gcontext
+.
+	gannotation
+.
+	gBean
+;
+
+8 @
+SpringBootApplication
+
+
+9 
+public
+ class 
+	cBookInfoApplication
+ {
+
+11 
+public
+ static void 
+	$main
+(
+String
+[] 
+args
+) {
+
+12 
+SpringApplication
+.
+	`run
+(
+BookInfoApplication
+.
+class
+, 
+args
+);
+
+15 @
+Bean
+
+
+16 
+public
+ 
+ModelMapper
+ 
+	$modelMapper
+() {
+
+17 return 
+new
+ 
+	`ModelMapper
+();
+
+18 
+	}
+}
+
+	@src/main/java/com/harbor/samples/bookInfo/DTOUtils.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+;
+
+3 
+import
+ 
+	gorg
+.
+	gmodelmapper
+.
+	gModelMapper
+;
+
+4 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+7 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBook
+;
+
+8 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBookDTO
+;
+
+9 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gReview
+;
+
+10 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gReviewDTO
+;
+
+11 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gUser
+;
+
+12 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gUserDTO
+;
+
+14 @
+Service
+
+
+15 
+public
+ class 
+	cDTOUtils
+ {
+
+17 @
+Autowired
+
+
+18 
+private
+ 
+ModelMapper
+ 
+	mmodelMapper
+;
+
+20 
+public
+ 
+Book
+ 
+	$convertToBook
+(
+BookDTO
+ 
+bookDTO
+) {
+
+21 
+Book
+ 
+book
+ = 
+modelMapper
+.
+	`map
+(
+bookDTO
+, Book.
+class
+);
+
+22 return 
+book
+;
+
+25 
+public
+ 
+User
+ 
+	$convertToUser
+(
+UserDTO
+ 
+userDTO
+) {
+
+26 
+User
+ 
+user
+ = 
+modelMapper
+.
+	`map
+(
+userDTO
+, User.
+class
+);
+
+27 return 
+user
+;
+
+28 
+	}
+}
+
+30 
+public
+ 
+Review
+ 
+	$convertToReview
+(
+ReviewDTO
+ 
+reviewDTO
+) {
+
+31 
+Review
+ 
+review
+ = 
+modelMapper
+.
+	`map
+(
+reviewDTO
+, Review.
+class
+);
+
+32 return 
+review
+;
+
+33 
+	}
+}
+
+35 
+public
+ 
+BookDTO
+ 
+	$convertToBookDTO
+(
+Book
+ 
+book
+) {
+
+36 
+BookDTO
+ 
+bookDto
+ = 
+modelMapper
+.
+	`map
+(
+book
+, BookDTO.
+class
+);
+
+37 return 
+bookDto
+;
+
+38 
+	}
+}
+
+40 
+public
+ 
+UserDTO
+ 
+	$convertToUserDTO
+(
+User
+ 
+user
+) {
+
+41 
+UserDTO
+ 
+userDto
+ = 
+modelMapper
+.
+	`map
+(
+user
+, UserDTO.
+class
+);
+
+42 return 
+userDto
+;
+
+43 
+	}
+}
+
+45 
+public
+ 
+ReviewDTO
+ 
+	$convertToReviewDTO
+(
+Review
+ 
+review
+) {
+
+46 
+ReviewDTO
+ 
+reviewDto
+ = 
+modelMapper
+.
+	`map
+(
+review
+, ReviewDTO.
+class
+);
+
+47 return 
+reviewDto
+;
+
+48 
+	}
+}
+
+	@src/main/java/com/harbor/samples/bookInfo/WebSecurityConfig.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+;
+
+3 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gcontext
+.
+	gApplicationContextAware
+;
+
+4 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gcontext
+.
+	gannotation
+.
+	gConfiguration
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gsecurity
+.
+	gconfig
+.
+	gannotation
+.
+	gauthentication
+.
+	gbuilders
+.
+	gAuthenticationManagerBuilder
+;
+
+6 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gsecurity
+.
+	gconfig
+.
+	gannotation
+.
+	gweb
+.
+	gbuilders
+.
+	gHttpSecurity
+;
+
+7 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gsecurity
+.
+	gconfig
+.
+	gannotation
+.
+	gweb
+.
+	gconfiguration
+.
+	gEnableWebSecurity
+;
+
+8 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gsecurity
+.
+	gconfig
+.
+	gannotation
+.
+	gweb
+.
+	gconfiguration
+.
+	gWebSecurityConfigurerAdapter
+;
+
+10 @
+	gConfiguration
+
+
+11 @
+EnableWebSecurity
+
+
+12 
+public
+ class 
+	cWebSecurityConfig
+
+
+13 
+extends
+ 
+WebSecurityConfigurerAdapter
+ 
+implements
+ 
+	mApplicationContextAware
+ {
+
+15 @
+Override
+
+
+16 
+protected
+ void 
+	$configure
+(
+HttpSecurity
+ 
+http
+) 
+throws
+ 
+Exception
+ {
+
+17 
+http
+
+
+19 .
+	`csrf
+().
+	`disable
+();
+
+29 
+	}
+}
+
+	@src/main/java/com/harbor/samples/bookInfo/controllers/BookInfoController.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gcontrollers
+;
+
+3 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gList
+;
+
+5 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLogger
+;
+
+6 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLoggerFactory
+;
+
+7 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+8 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gDeleteMapping
+;
+
+9 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gGetMapping
+;
+
+10 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPathVariable
+;
+
+11 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPostMapping
+;
+
+12 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPutMapping
+;
+
+13 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gRequestBody
+;
+
+14 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gRequestParam
+;
+
+15 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gRestController
+;
+
+17 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gDTOUtils
+;
+
+18 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBook
+;
+
+19 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBookDTO
+;
+
+20 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gservices
+.
+	gBookService
+;
+
+22 @
+RestController
+
+
+23 
+public
+ class 
+	cBookInfoController
+ {
+
+24 
+private
+ static 
+final
+ 
+Logger
+ 
+	mLOGGER
+ = 
+LoggerFactory
+.
+getLogger
+(
+BookInfoController
+.
+class
+);
+
+26 @
+Autowired
+
+
+27 
+private
+ 
+BookService
+ 
+	mbookService
+;
+
+29 @
+Autowired
+
+
+30 
+private
+ 
+DTOUtils
+ 
+	mdtoUtils
+;
+
+32 @
+PostMapping
+(
+value
+ = "/book", 
+consumes
+ = "application/json", 
+produces
+ = "application/json")
+
+33 
+public
+ 
+BookDTO
+ 
+createBook
+(@
+RequestBody
+ BookDTO 
+bookDto
+) {
+
+34 
+LOGGER
+.
+info
+("Creating book: {}", 
+bookDto
+);
+
+35 
+Book
+ 
+	mbook
+ = 
+dtoUtils
+.
+convertToBook
+(
+bookDto
+);
+
+36 
+	mLOGGER
+.
+info
+("Converted book: {}", 
+book
+);
+
+37 return 
+	mdtoUtils
+.
+convertToBookDTO
+(
+bookService
+.
+createBook
+(
+book
+));
+
+40 @
+GetMapping
+("/book/{id}")
+
+41 
+public
+ 
+BookDTO
+ 
+getBookById
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+) {
+
+42 
+	gLOGGER
+.
+info
+("Getting book with id: {}", 
+id
+);
+
+43 return 
+	gdtoUtils
+.
+convertToBookDTO
+(
+bookService
+.
+getBookById
+(
+id
+));
+
+46 @
+PutMapping
+(
+value
+ = "/book/{id}", 
+consumes
+ = "application/json", 
+produces
+ = "application/json")
+
+47 
+public
+ 
+BookDTO
+ 
+updateBook
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+, @
+RequestBody
+ BookDTO 
+bookDto
+) {
+
+48 
+	gLOGGER
+.
+info
+("Updating book: {}", 
+bookDto
+);
+
+49 
+Book
+ 
+	gbook
+ = 
+dtoUtils
+.
+convertToBook
+(
+bookDto
+);
+
+50 
+	gLOGGER
+.
+info
+("Converted book: {}", 
+book
+);
+
+51 return 
+	gdtoUtils
+.
+convertToBookDTO
+(
+bookService
+.
+updateBook
+(
+book
+));
+
+54 @
+DeleteMapping
+("/book/{id}")
+
+55 
+public
+ void 
+deleteBook
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+) {
+
+56 
+	gLOGGER
+.
+info
+("Deleting book with id: {}", 
+id
+);
+
+57 
+	gbookService
+.
+deleteBook
+(
+id
+);
+
+60 @
+GetMapping
+("/getBookByName")
+
+61 
+public
+ 
+	gList
+<
+	gBookDTO
+> 
+getBookByName
+(@
+RequestParam
+("bookName") 
+String
+ 
+name
+) {
+
+62 
+	gLOGGER
+.
+info
+("Getting book with name: {}", 
+name
+);
+
+63 return 
+	gbookService
+.
+getBookByName
+(
+name
+);
+
+	@src/main/java/com/harbor/samples/bookInfo/controllers/ReviewController.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gcontrollers
+;
+
+3 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLogger
+;
+
+4 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLoggerFactory
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+6 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gDeleteMapping
+;
+
+7 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gGetMapping
+;
+
+8 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPathVariable
+;
+
+9 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPostMapping
+;
+
+10 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPutMapping
+;
+
+11 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gRequestBody
+;
+
+12 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gRestController
+;
+
+14 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gDTOUtils
+;
+
+15 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gReview
+;
+
+16 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gReviewDTO
+;
+
+17 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gservices
+.
+	gReviewService
+;
+
+19 @
+RestController
+
+
+20 
+public
+ class 
+	cReviewController
+ {
+
+21 
+private
+ static 
+final
+ 
+Logger
+ 
+	mLOGGER
+ = 
+LoggerFactory
+.
+getLogger
+(
+ReviewController
+.
+class
+);
+
+23 @
+Autowired
+
+
+24 
+private
+ 
+ReviewService
+ 
+	mreviewService
+;
+
+26 @
+Autowired
+
+
+27 
+private
+ 
+DTOUtils
+ 
+	mdtoUtils
+;
+
+29 @
+PostMapping
+(
+value
+ = "/review", 
+consumes
+ = "application/json", 
+produces
+ = "application/json")
+
+30 
+public
+ 
+ReviewDTO
+ 
+createReview
+(@
+RequestBody
+ ReviewDTO 
+reviewDto
+) {
+
+31 
+LOGGER
+.
+info
+("Creating review: {}", 
+reviewDto
+);
+
+32 
+Review
+ 
+	mreview
+ = 
+dtoUtils
+.
+convertToReview
+(
+reviewDto
+);
+
+33 
+	mLOGGER
+.
+info
+("Mapped review: {}", 
+review
+);
+
+34 return 
+	mdtoUtils
+.
+convertToReviewDTO
+(
+reviewService
+.
+createReview
+(
+review
+));
+
+37 @
+GetMapping
+("/review/{id}")
+
+38 
+public
+ 
+ReviewDTO
+ 
+getReviewById
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+) {
+
+39 
+	gLOGGER
+.
+info
+("Getting review with id: {}", 
+id
+);
+
+40 return 
+	gdtoUtils
+.
+convertToReviewDTO
+(
+reviewService
+.
+getReviewById
+(
+id
+));
+
+43 @
+PutMapping
+(
+value
+ = "/review/{id}", 
+consumes
+ = "application/json", 
+produces
+ = "application/json")
+
+44 
+public
+ 
+ReviewDTO
+ 
+updateReview
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+, @
+RequestBody
+ ReviewDTO 
+reviewDto
+) {
+
+45 
+	gLOGGER
+.
+info
+("Updating review: {}", 
+reviewDto
+);
+
+46 
+Review
+ 
+	greview
+ = 
+dtoUtils
+.
+convertToReview
+(
+reviewDto
+);
+
+47 return 
+	gdtoUtils
+.
+convertToReviewDTO
+(
+reviewService
+.
+updateReview
+(
+review
+));
+
+50 @
+DeleteMapping
+("/review/{id}")
+
+51 
+public
+ void 
+deleteReview
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+) {
+
+52 
+	gLOGGER
+.
+info
+("Deleting review with id: {}", 
+id
+);
+
+53 
+	greviewService
+.
+deleteReview
+(
+id
+);
+
+	@src/main/java/com/harbor/samples/bookInfo/controllers/UserController.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gcontrollers
+;
+
+3 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLogger
+;
+
+4 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLoggerFactory
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+6 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gDeleteMapping
+;
+
+7 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gGetMapping
+;
+
+8 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPathVariable
+;
+
+9 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPostMapping
+;
+
+10 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gPutMapping
+;
+
+11 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gRequestBody
+;
+
+12 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gweb
+.
+	gbind
+.
+	gannotation
+.
+	gRestController
+;
+
+14 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gDTOUtils
+;
+
+15 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gUser
+;
+
+16 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gUserDTO
+;
+
+17 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gservices
+.
+	gUserService
+;
+
+19 @
+RestController
+
+
+20 
+public
+ class 
+	cUserController
+ {
+
+21 
+private
+ static 
+final
+ 
+Logger
+ 
+	mLOGGER
+ = 
+LoggerFactory
+.
+getLogger
+(
+UserController
+.
+class
+);
+
+23 @
+Autowired
+
+
+24 
+private
+ 
+UserService
+ 
+	muserService
+;
+
+26 @
+Autowired
+
+
+27 
+private
+ 
+DTOUtils
+ 
+	mdtoUtils
+;
+
+29 @
+PostMapping
+(
+value
+ = "/user", 
+consumes
+ = "application/json", 
+produces
+ = "application/json")
+
+30 
+public
+ 
+UserDTO
+ 
+createBook
+(@
+RequestBody
+ UserDTO 
+userDto
+) {
+
+31 
+LOGGER
+.
+info
+("Creating user: {}", 
+userDto
+);
+
+32 
+User
+ 
+	muser
+ = 
+dtoUtils
+.
+convertToUser
+(
+userDto
+);
+
+33 
+	mLOGGER
+.
+info
+("Converted user: {}", 
+user
+);
+
+34 return 
+	mdtoUtils
+.
+convertToUserDTO
+(
+userService
+.
+createUser
+(
+user
+));
+
+37 @
+GetMapping
+("/user/{id}")
+
+38 
+public
+ 
+UserDTO
+ 
+getBookById
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+) {
+
+39 
+	gLOGGER
+.
+info
+("Getting user with id: {}", 
+id
+);
+
+40 return 
+	gdtoUtils
+.
+convertToUserDTO
+(
+userService
+.
+getUserById
+(
+id
+));
+
+43 @
+PutMapping
+(
+value
+ = "/user/{id}", 
+consumes
+ = "application/json", 
+produces
+ = "application/json")
+
+44 
+public
+ 
+UserDTO
+ 
+updateBook
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+, @
+RequestBody
+ UserDTO 
+userDto
+) {
+
+45 
+	gLOGGER
+.
+info
+("Updating user: {}", 
+userDto
+);
+
+46 
+User
+ 
+	guser
+ = 
+dtoUtils
+.
+convertToUser
+(
+userDto
+);
+
+47 
+	gLOGGER
+.
+info
+("Converted user: {}", 
+user
+);
+
+48 return 
+	gdtoUtils
+.
+convertToUserDTO
+(
+userService
+.
+updateUser
+(
+user
+));
+
+51 @
+DeleteMapping
+("/user/{id}")
+
+52 
+public
+ void 
+deleteBook
+(@
+PathVariable
+("id") 
+Long
+ 
+id
+) {
+
+53 
+	gLOGGER
+.
+info
+("Deleting user with id: {}", 
+id
+);
+
+54 
+	guserService
+.
+deleteUser
+(
+id
+);
+
+	@src/main/java/com/harbor/samples/bookInfo/models/Book.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+;
+
+3 
+import
+ 
+	gjava
+.
+	gio
+.
+	gSerializable
+;
+
+4 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gSet
+;
+
+6 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gColumn
+;
+
+7 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gEntity
+;
+
+8 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gGeneratedValue
+;
+
+9 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gId
+;
+
+10 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gOneToMany
+;
+
+11 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gTable
+;
+
+13 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	glang
+.
+	gNullable
+;
+
+15 
+import
+ 
+	glombok
+.
+	gGetter
+;
+
+16 
+import
+ 
+	glombok
+.
+	gSetter
+;
+
+18 @
+Table
+(
+name
+ = "book")
+
+19 @
+Entity
+(
+name
+ = "book")
+
+20 @
+Getter
+
+
+21 @
+Setter
+
+
+22 
+public
+ class 
+	cBook
+ 
+implements
+ 
+Serializable
+ {
+
+24 @
+Id
+
+
+25 @
+GeneratedValue
+
+
+26 
+private
+ 
+Long
+ 
+id
+;
+
+28 
+private
+ 
+String
+ 
+	mtitle
+;
+
+29 
+private
+ 
+String
+ 
+	mauthor
+;
+
+31 @
+Nullable
+
+
+32 
+private
+ 
+String
+ 
+	misbn
+;
+
+33 @
+Nullable
+
+
+34 
+private
+ 
+String
+ 
+	mpublisher
+;
+
+36 @
+Column
+(
+name
+="creationTimestamp")
+
+37 
+private
+ long 
+createdAt
+;
+
+39 @
+Nullable
+
+
+40 
+private
+ 
+String
+ 
+	mcreditCardNumber
+;
+
+42 @
+OneToMany
+(
+mappedBy
+ = "forBook")
+
+43 
+private
+ 
+Set
+<
+Review
+> 
+reviews
+;
+
+	@src/main/java/com/harbor/samples/bookInfo/models/BookDTO.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+;
+
+3 
+import
+ 
+	gjava
+.
+	gio
+.
+	gSerializable
+;
+
+4 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gSet
+;
+
+6 
+import
+ 
+	glombok
+.
+	gGetter
+;
+
+7 
+import
+ 
+	glombok
+.
+	gSetter
+;
+
+9 @
+	gGetter
+
+
+10 @
+Setter
+
+
+11 
+public
+ class 
+	cBookDTO
+ 
+implements
+ 
+	mSerializable
+ {
+
+12 
+private
+ 
+Long
+ 
+	mid
+;
+
+14 
+private
+ 
+String
+ 
+	mtitle
+;
+
+15 
+private
+ 
+String
+ 
+	mauthor
+;
+
+16 
+private
+ 
+String
+ 
+	misbn
+;
+
+17 
+private
+ 
+String
+ 
+	mpublisher
+;
+
+19 
+private
+ long 
+	mcreatedAt
+;
+
+21 
+private
+ 
+String
+ 
+	mcreditCardNumber
+;
+
+22 
+private
+ 
+	mSet
+<
+	mReviewDTO
+> 
+	mreviews
+;
+
+	@src/main/java/com/harbor/samples/bookInfo/models/Review.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+;
+
+3 
+import
+ 
+	gjava
+.
+	gio
+.
+	gSerializable
+;
+
+5 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gEntity
+;
+
+6 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gGeneratedValue
+;
+
+7 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gId
+;
+
+8 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gJoinColumn
+;
+
+9 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gManyToOne
+;
+
+10 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gTable
+;
+
+12 
+import
+ 
+	glombok
+.
+	gGetter
+;
+
+13 
+import
+ 
+	glombok
+.
+	gSetter
+;
+
+15 @
+Table
+(
+name
+ = "review")
+
+16 @
+Entity
+(
+name
+ = "review")
+
+17 @
+Getter
+
+
+18 @
+Setter
+
+
+19 
+public
+ class 
+	cReview
+ 
+implements
+ 
+Serializable
+ {
+
+21 @
+Id
+
+
+22 @
+GeneratedValue
+
+
+23 
+private
+ 
+Long
+ 
+id
+;
+
+25 
+private
+ int 
+	mrating
+;
+
+26 
+private
+ 
+String
+ 
+	mcomment
+;
+
+28 
+private
+ 
+String
+ 
+	msentiment
+;
+
+30 
+private
+ long 
+	mcreatedAt
+;
+
+32 @
+	mManyToOne
+
+
+33 @
+JoinColumn
+(
+name
+ = "user_id", 
+referencedColumnName
+ = "id", 
+nullable
+ = 
+false
+)
+
+34 
+private
+ 
+User
+ 
+byUser
+;
+
+36 @
+	mManyToOne
+
+
+37 @
+JoinColumn
+(
+name
+ = "book_id", 
+referencedColumnName
+ = "id", 
+nullable
+ = 
+false
+)
+
+38 
+private
+ 
+Book
+ 
+forBook
+;
+
+	@src/main/java/com/harbor/samples/bookInfo/models/ReviewDTO.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+;
+
+3 
+import
+ 
+	gjava
+.
+	gio
+.
+	gSerializable
+;
+
+5 
+import
+ 
+	glombok
+.
+	gGetter
+;
+
+6 
+import
+ 
+	glombok
+.
+	gSetter
+;
+
+8 @
+	gGetter
+
+
+9 @
+Setter
+
+
+10 
+public
+ class 
+	cReviewDTO
+ 
+implements
+ 
+	mSerializable
+ {
+
+11 
+private
+ 
+Long
+ 
+	mid
+;
+
+13 
+private
+ int 
+	mrating
+;
+
+14 
+private
+ 
+String
+ 
+	mcomment
+;
+
+16 
+private
+ 
+String
+ 
+	msentiment
+;
+
+18 
+private
+ long 
+	mcreatedAt
+;
+
+20 
+private
+ 
+Long
+ 
+	mbyUserId
+;
+
+22 
+private
+ 
+Long
+ 
+	mforBookId
+;
+
+	@src/main/java/com/harbor/samples/bookInfo/models/User.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+;
+
+3 
+import
+ 
+	gjava
+.
+	gio
+.
+	gSerializable
+;
+
+4 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gSet
+;
+
+6 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gEntity
+;
+
+7 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gGeneratedValue
+;
+
+8 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gId
+;
+
+9 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gOneToMany
+;
+
+10 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gTable
+;
+
+12 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	glang
+.
+	gNullable
+;
+
+14 
+import
+ 
+	glombok
+.
+	gGetter
+;
+
+15 
+import
+ 
+	glombok
+.
+	gSetter
+;
+
+17 @
+Table
+(
+name
+ = "user")
+
+18 @
+Entity
+(
+name
+ = "user")
+
+19 @
+Getter
+
+
+20 @
+Setter
+
+
+21 
+public
+ class 
+	cUser
+ 
+implements
+ 
+Serializable
+ {
+
+23 @
+Id
+
+
+24 @
+GeneratedValue
+
+
+25 
+private
+ 
+Long
+ 
+id
+;
+
+27 
+private
+ 
+String
+ 
+	mfirstName
+;
+
+28 
+private
+ 
+String
+ 
+	mlastName
+;
+
+30 
+private
+ 
+String
+ 
+	memailId
+;
+
+31 @
+Nullable
+
+
+32 
+private
+ 
+String
+ 
+	mmobileNumber
+;
+
+34 
+private
+ long 
+	mcreatedAt
+;
+
+36 
+private
+ 
+String
+ 
+	mloginName
+;
+
+38 @
+OneToMany
+(
+mappedBy
+="byUser")
+
+39 
+private
+ 
+Set
+<
+Review
+> 
+reviews
+;
+
+	@src/main/java/com/harbor/samples/bookInfo/models/UserDTO.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+;
+
+3 
+import
+ 
+	gjava
+.
+	gio
+.
+	gSerializable
+;
+
+4 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gSet
+;
+
+6 
+import
+ 
+	glombok
+.
+	gGetter
+;
+
+7 
+import
+ 
+	glombok
+.
+	gSetter
+;
+
+9 @
+	gGetter
+
+
+10 @
+Setter
+
+
+11 
+public
+ class 
+	cUserDTO
+ 
+implements
+ 
+	mSerializable
+ {
+
+12 
+private
+ 
+Long
+ 
+	mid
+;
+
+14 
+private
+ 
+String
+ 
+	mfirstName
+;
+
+15 
+private
+ 
+String
+ 
+	mlastName
+;
+
+17 
+private
+ 
+String
+ 
+	memailId
+;
+
+18 
+private
+ 
+String
+ 
+	mmobileNumber
+;
+
+20 
+private
+ long 
+	mcreatedAt
+;
+
+22 
+private
+ 
+String
+ 
+	mloginName
+;
+
+24 
+private
+ 
+	mSet
+<
+	mReviewDTO
+> 
+	mreviews
+;
+
+	@src/main/java/com/harbor/samples/bookInfo/repositories/BookRepo.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+;
+
+3 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gdata
+.
+	gjpa
+.
+	grepository
+.
+	gQuery
+;
+
+4 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gdata
+.
+	grepository
+.
+	gCrudRepository
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+7 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBook
+;
+
+9 @
+Service
+
+
+10 
+public
+ 
+interface
+ 
+BookRepo
+ 
+extends
+ 
+	gCrudRepository
+<
+	gBook
+, 
+	gLong
+> {
+
+11 @
+Query
+(
+value
+ = "SELECT * FROM book WHERE name = ?1", 
+nativeQuery
+ = 
+true
+)
+
+12 
+Book
+ 
+findByName
+(
+String
+ 
+name
+);
+
+	@src/main/java/com/harbor/samples/bookInfo/repositories/CustomBookRepo.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+;
+
+3 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gList
+;
+
+4 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gstream
+.
+	gCollectors
+;
+
+6 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gEntityManager
+;
+
+7 
+import
+ 
+	gjavax
+.
+	gpersistence
+.
+	gTypedQuery
+;
+
+9 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLogger
+;
+
+10 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+11 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+13 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBook
+;
+
+15 @
+Service
+
+
+16 
+public
+ class 
+	cCustomBookRepo
+ {
+
+17 
+private
+ static 
+final
+ 
+Logger
+ 
+	mLOGGER
+ = 
+org
+.
+slf4j
+.
+LoggerFactory
+.
+getLogger
+(
+CustomBookRepo
+.
+class
+);
+
+19 @
+Autowired
+
+
+20 
+EntityManager
+ 
+	mentityManager
+;
+
+22 
+public
+ 
+	mList
+<
+	mBook
+> 
+	$getBookByName
+(
+String
+ 
+name
+) {
+
+23 
+LOGGER
+.
+	`info
+("Getting book with name: {}", 
+name
+);
+
+24 
+String
+ 
+jql
+ = "from book where title = '" + 
+name
+ + "'";
+
+25 
+TypedQuery
+<
+Book
+> 
+q
+ = 
+entityManager
+.
+	`createQuery
+(
+jql
+, Book.
+class
+);
+
+26 return 
+q
+.
+	`getResultList
+();
+
+28 
+	}
+}
+
+	@src/main/java/com/harbor/samples/bookInfo/repositories/ReviewRepo.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+;
+
+3 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gdata
+.
+	grepository
+.
+	gCrudRepository
+;
+
+4 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+6 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gReview
+;
+
+8 @
+Service
+
+
+9 
+public
+ 
+interface
+ 
+ReviewRepo
+ 
+extends
+ 
+	gCrudRepository
+<
+	gReview
+, 
+	gLong
+> {
+
+	@src/main/java/com/harbor/samples/bookInfo/repositories/UserRepo.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+;
+
+3 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gdata
+.
+	gjpa
+.
+	grepository
+.
+	gQuery
+;
+
+4 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gdata
+.
+	grepository
+.
+	gCrudRepository
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+7 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gUser
+;
+
+9 @
+Service
+
+
+10 
+public
+ 
+interface
+ 
+UserRepo
+ 
+extends
+ 
+	gCrudRepository
+<
+	gUser
+, 
+	gLong
+> {
+
+11 @
+Query
+(
+value
+ = "SELECT * FROM user WHERE name RLIKE '?1'", 
+nativeQuery
+ = 
+true
+)
+
+12 
+User
+ 
+findByName
+(
+String
+ 
+name
+);
+
+	@src/main/java/com/harbor/samples/bookInfo/services/BookService.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gservices
+;
+
+3 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gList
+;
+
+4 
+import
+ 
+	gjava
+.
+	gutil
+.
+	gstream
+.
+	gCollectors
+;
+
+6 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLogger
+;
+
+7 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLoggerFactory
+;
+
+8 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+9 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+11 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gDTOUtils
+;
+
+12 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBook
+;
+
+13 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gBookDTO
+;
+
+14 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+.
+	gBookRepo
+;
+
+15 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+.
+	gCustomBookRepo
+;
+
+17 @
+Service
+
+
+18 
+public
+ class 
+	cBookService
+ {
+
+19 
+public
+ static 
+final
+ 
+Logger
+ 
+	mLOGGER
+ = 
+LoggerFactory
+.
+getLogger
+(
+BookService
+.
+class
+);
+
+21 @
+Autowired
+
+
+22 
+private
+ 
+BookRepo
+ 
+	mbookRepo
+;
+
+24 @
+Autowired
+
+
+25 
+private
+ 
+DTOUtils
+ 
+	mdtoUtils
+;
+
+27 @
+Autowired
+
+
+28 
+private
+ 
+CustomBookRepo
+ 
+	mcustomRepo
+;
+
+30 
+public
+ 
+Book
+ 
+	$createBook
+(
+Book
+ 
+book
+) {
+
+31 
+LOGGER
+.
+	`info
+("Creating book: {}", 
+book
+);
+
+32 return 
+bookRepo
+.
+	`save
+(
+book
+);
+
+35 
+public
+ 
+Book
+ 
+	$getBookById
+(
+Long
+ 
+id
+) {
+
+36 
+LOGGER
+.
+	`info
+("Getting book with id: {}", 
+id
+);
+
+37 return 
+bookRepo
+.
+	`findById
+(
+id
+).
+	`orElse
+(
+null
+);
+
+38 
+	}
+}
+
+40 
+public
+ 
+Book
+ 
+	$updateBook
+(
+Book
+ 
+book
+) {
+
+41 
+LOGGER
+.
+	`info
+("Updating book: {}", 
+book
+);
+
+42 return 
+bookRepo
+.
+	`save
+(
+book
+);
+
+43 
+	}
+}
+
+45 
+public
+ void 
+	$deleteBook
+(
+Long
+ 
+id
+) {
+
+46 
+LOGGER
+.
+	`info
+("Deleting book with id: {}", 
+id
+);
+
+47 
+bookRepo
+.
+	`deleteById
+(
+id
+);
+
+48 
+	}
+}
+
+50 
+public
+ 
+	gList
+<
+	gBookDTO
+> 
+	$getBookByName
+(
+String
+ 
+name
+) {
+
+51 
+LOGGER
+.
+	`info
+("Getting book with name: {}", 
+name
+);
+
+52 return 
+customRepo
+.
+	`getBookByName
+(
+name
+).
+	`stream
+().
+	`map
+(
+book
+ -> 
+dtoUtils
+.
+	`convertToBookDTO
+(book)).
+	`collect
+(
+Collectors
+.
+	`toList
+());
+
+53 
+	}
+}
+
+	@src/main/java/com/harbor/samples/bookInfo/services/ReviewService.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gservices
+;
+
+3 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLogger
+;
+
+4 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLoggerFactory
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+6 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+8 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gReview
+;
+
+9 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+.
+	gReviewRepo
+;
+
+11 @
+Service
+
+
+12 
+public
+ class 
+	cReviewService
+ {
+
+13 
+public
+ static 
+final
+ 
+Logger
+ 
+	mLOGGER
+ = 
+LoggerFactory
+.
+getLogger
+(
+ReviewService
+.
+class
+);
+
+15 @
+Autowired
+
+
+16 
+private
+ 
+ReviewRepo
+ 
+	mreviewRepo
+;
+
+18 
+public
+ 
+Review
+ 
+	$createReview
+(
+Review
+ 
+review
+) {
+
+19 
+LOGGER
+.
+	`info
+("Creating review: {}", 
+review
+);
+
+20 return 
+reviewRepo
+.
+	`save
+(
+review
+);
+
+23 
+public
+ 
+Review
+ 
+	$getReviewById
+(
+Long
+ 
+id
+) {
+
+24 
+LOGGER
+.
+	`info
+("Getting review with id: {}", 
+id
+);
+
+25 return 
+reviewRepo
+.
+	`findById
+(
+id
+).
+	`orElse
+(
+null
+);
+
+26 
+	}
+}
+
+28 
+public
+ 
+Review
+ 
+	$updateReview
+(
+Review
+ 
+review
+) {
+
+29 
+LOGGER
+.
+	`info
+("Updating review: {}", 
+review
+);
+
+30 return 
+reviewRepo
+.
+	`save
+(
+review
+);
+
+31 
+	}
+}
+
+33 
+public
+ void 
+	$deleteReview
+(
+Long
+ 
+id
+) {
+
+34 
+LOGGER
+.
+	`info
+("Deleting review with id: {}", 
+id
+);
+
+35 
+reviewRepo
+.
+	`deleteById
+(
+id
+);
+
+36 
+	}
+}
+
+	@src/main/java/com/harbor/samples/bookInfo/services/UserService.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gservices
+;
+
+3 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLogger
+;
+
+4 
+import
+ 
+	gorg
+.
+	gslf4j
+.
+	gLoggerFactory
+;
+
+5 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gbeans
+.
+	gfactory
+.
+	gannotation
+.
+	gAutowired
+;
+
+6 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gstereotype
+.
+	gService
+;
+
+8 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	gmodels
+.
+	gUser
+;
+
+9 
+import
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+.
+	grepositories
+.
+	gUserRepo
+;
+
+11 @
+Service
+
+
+12 
+public
+ class 
+	cUserService
+ {
+
+13 
+public
+ static 
+final
+ 
+Logger
+ 
+	mLOGGER
+ = 
+LoggerFactory
+.
+getLogger
+(
+UserService
+.
+class
+);
+
+15 @
+Autowired
+
+
+16 
+private
+ 
+UserRepo
+ 
+	muserRepo
+;
+
+18 
+public
+ 
+User
+ 
+	$createUser
+(
+User
+ 
+user
+) {
+
+19 
+LOGGER
+.
+	`info
+("Creating User: {}", 
+user
+);
+
+20 return 
+userRepo
+.
+	`save
+(
+user
+);
+
+23 
+public
+ 
+User
+ 
+	$getUserById
+(
+Long
+ 
+id
+) {
+
+24 
+LOGGER
+.
+	`info
+("Getting User with id: {}", 
+id
+);
+
+25 return 
+userRepo
+.
+	`findById
+(
+id
+).
+	`orElse
+(
+null
+);
+
+26 
+	}
+}
+
+28 
+public
+ 
+User
+ 
+	$updateUser
+(
+User
+ 
+user
+) {
+
+29 
+LOGGER
+.
+	`info
+("Updating User: {}", 
+user
+);
+
+30 return 
+userRepo
+.
+	`save
+(
+user
+);
+
+31 
+	}
+}
+
+33 
+public
+ void 
+	$deleteUser
+(
+Long
+ 
+id
+) {
+
+34 
+LOGGER
+.
+	`info
+("Deleting User with id: {}", 
+id
+);
+
+35 
+userRepo
+.
+	`deleteById
+(
+id
+);
+
+36 
+	}
+}
+
+	@src/test/java/com/harbor/samples/bookInfo/BookInfoApplicationTests.java
+
+1 
+package
+ 
+	gcom
+.
+	gharbor
+.
+	gsamples
+.
+	gbookInfo
+;
+
+3 
+import
+ 
+	gorg
+.
+	gjunit
+.
+	gjupiter
+.
+	gapi
+.
+	gTest
+;
+
+4 
+import
+ 
+	gorg
+.
+	gspringframework
+.
+	gboot
+.
+	gtest
+.
+	gcontext
+.
+	gSpringBootTest
+;
+
+6 @
+SpringBootTest
+
+
+7 class 
+	cBookInfoApplicationTests
+ {
+
+9 @
+Test
+
+
+10 void 
+	$contextLoads
+() {
+
+13 
+	}
+}
+
+	@
+1
+.
+0
+20
+1345
+src/main/java/com/harbor/samples/bookInfo/BookInfoApplication.java
+src/main/java/com/harbor/samples/bookInfo/DTOUtils.java
+src/main/java/com/harbor/samples/bookInfo/WebSecurityConfig.java
+src/main/java/com/harbor/samples/bookInfo/controllers/BookInfoController.java
+src/main/java/com/harbor/samples/bookInfo/controllers/ReviewController.java
+src/main/java/com/harbor/samples/bookInfo/controllers/UserController.java
+src/main/java/com/harbor/samples/bookInfo/models/Book.java
+src/main/java/com/harbor/samples/bookInfo/models/BookDTO.java
+src/main/java/com/harbor/samples/bookInfo/models/Review.java
+src/main/java/com/harbor/samples/bookInfo/models/ReviewDTO.java
+src/main/java/com/harbor/samples/bookInfo/models/User.java
+src/main/java/com/harbor/samples/bookInfo/models/UserDTO.java
+src/main/java/com/harbor/samples/bookInfo/repositories/BookRepo.java
+src/main/java/com/harbor/samples/bookInfo/repositories/CustomBookRepo.java
+src/main/java/com/harbor/samples/bookInfo/repositories/ReviewRepo.java
+src/main/java/com/harbor/samples/bookInfo/repositories/UserRepo.java
+src/main/java/com/harbor/samples/bookInfo/services/BookService.java
+src/main/java/com/harbor/samples/bookInfo/services/ReviewService.java
+src/main/java/com/harbor/samples/bookInfo/services/UserService.java
+src/test/java/com/harbor/samples/bookInfo/BookInfoApplicationTests.java
